@@ -19,3 +19,59 @@
     margin: 20px;
 }
 
+#goBackButton, #clearButton {
+    background-color: purple;
+    position: relative;
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    top: 30%;
+    text-align: center;
+}
+
+#goBackButton {
+    left: 55%;
+    width: auto;
+    text-decoration: none;
+}
+
+#clearButton {
+    right: 5%;
+}
+
+button {
+    border-radius: 8px;
+}
+
+textarea {
+    width: 90%;
+    margin: 20px;
+}
+
+#initalsRequestElement {
+    margin-right: 10px;
+}
+
+#enterInitialsElement {
+    margin-bottom: 20px;
+    width: 50%;
+    border: 1px solid lightgray;
+}
+
+h1 {
+    text-align: center;
+}
+
+li {
+    background-color: purple;
+    margin-top: 10px;
+    padding: 5px 15px;
+    width: 80%;
+    font-size: 18px;
+    color: white;
+}
+
+#createDivElement {
+    margin-top: 20px;
+    border-top: 1px solid lightgray;
+}
