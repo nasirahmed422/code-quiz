@@ -1,8 +1,8 @@
 // Jamie Morris Homework-4 Code Quiz 
 // Declared variables
 var highScore = document.querySelector("#highScore");
-var clear = document.querySelector("#clear");
-var goBack = document.querySelector("#goBack");
+var clear = document.querySelector("#clearButton");
+var goBack = document.querySelector("#goBackButton");
 
 // Event listener to clear scores 
 clear.addEventListener("click", function () {

@@ -36,7 +36,6 @@ var questionCounter = 0;
 var timerDiv = document.querySelector("#timerDiv");
 var startQuiz = document.querySelector("#startQuiz");
 var questionsDiv = document.querySelector("#questionsDiv");
-var mainContainer = document.querySelector("#mainContainer");
 
 //I set the quiz time to be 60 seconds
 var timeLeft = 60;
@@ -89,17 +88,17 @@ function compareAnswers(event) {
 
     if (element.matches("li")) {
 
-        var createDiv = document.createElement("div");
-        createDiv.setAttribute("id", "createDiv");
+        var createDivElement = document.createElement("div");
+        createDivElement.setAttribute("id", "createDivElement");
         // Correct condition 
         if (element.textContent == questions[questionCounter].answer) {
             score++;
-            createDiv.textContent = "Correct! The answer is:  " + questions[questionCounter].answer;
+            createDivElement.textContent = "Correct! The answer is:  " + questions[questionCounter].answer;
             // Correct condition 
         } else {
             // I decideded make the penalty 7 points.
             timeLeft = timeLeft - 7;
-            createDiv.textContent = "Wrong! The correct answer is:  " + questions[questionCounter].answer;
+            createDivElement.textContent = "Wrong! The correct answer is:  " + questions[questionCounter].answer;
         }
 
     }
@@ -109,10 +108,78 @@ function compareAnswers(event) {
     if (questionCounter >= questions.length) {
         // All done will append last page with user stats
         scoreSubmission();
-        createDiv.textContent = "End of quiz!" + " " + "You got  " + score + "/" + questions.length + " Correct!";
+        createDivElement.textContent = "End of quiz!" + " " + "You got  " + score + "/" + questions.length + " Correct!";
     } else {
         displayQuestions(questionCounter);
     }
-    questionsDiv.appendChild(createDiv);
+    questionsDiv.appendChild(createDivElement);
+
+}
+
+// The following will run after the last question is answered.
+function scoreSubmission() {
+    questionsDiv.innerHTML = "";
+    timerDiv.innerHTML = "";
+
+    //Display All Done message when quiz is done and append to questionsDiv from the original html doc.
+    var allDoneElement = document.createElement("h1");
+    allDoneElement.setAttribute("id", "allDoneElement");
+    allDoneElement.textContent = "All Done!"
+    questionsDiv.appendChild(allDoneElement);
+
+    // This will create the element to add the score to display on the main questionsDiv.
+    var yourScoreElement = document.createElement("p");
+    yourScoreElement.setAttribute("id", "createP");
+    questionsDiv.appendChild(yourScoreElement);
+
+    if (timeLeft >= 0) {
+        var timeRemaining = timeLeft;
+        var createP2 = document.createElement("p");
+        //Window clearInterval() Method to stop the time.
+        clearInterval(timeDisplay);
+        yourScoreElement.textContent = "Your final score is: " + timeRemaining;
+        questionsDiv.appendChild(createP2);
+    }
+
+    // This will ask you to enter your initials
+    var initalsRequestElement = document.createElement("label");
+    initalsRequestElement.setAttribute("id", "initalsRequestElement");
+    initalsRequestElement.textContent = "Enter your initials: ";
+    questionsDiv.appendChild(initalsRequestElement);
+
+    // This is where you input your initials
+    var enterInitialsElement = document.createElement("input");
+    enterInitialsElement.setAttribute("type", "text");
+    enterInitialsElement.setAttribute("id", "enterInitialsElement");
+    enterInitialsElement.textContent = "";
+    questionsDiv.appendChild(enterInitialsElement);
+
+    // This will create a submit button after the quiz is done.
+    var createSubmitElement = document.createElement("button");
+    createSubmitElement.setAttribute("type", "submit");
+    createSubmitElement.setAttribute("id", "createSubmitElement");
+    createSubmitElement.textContent = "Submit";
+    questionsDiv.appendChild(createSubmitElement);
+
+    // Event listener to capture initials and local storage for initials and score
+    createSubmitElement.addEventListener("click", function () {
+        var initials = enterInitialsElement.value;
+
+        var finalScore = {
+            initials: initials,
+            score: timeRemaining
+        }
+        var allScores = localStorage.getItem("allScores");
+        if (allScores === null) {
+            allScores = [];
+        } else {
+            allScores = JSON.parse(allScores);
+        }
+        allScores.push(finalScore);
+        var newScore = JSON.stringify(allScores);
+        localStorage.setItem("allScores", newScore);
+        // We will be reusing the scores page. That is why we are using replace and adding it to that corresponding html file. 
+        window.location.replace("assets/scores.html");
+    });
 
 }
