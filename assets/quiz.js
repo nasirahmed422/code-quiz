@@ -93,12 +93,12 @@ function compareAnswers(event) {
         // Correct condition 
         if (element.textContent == questions[questionCounter].answer) {
             score++;
-            createDivElement.textContent = "Correct! The answer is:  " + questions[questionCounter].answer;
+            createDivElement.textContent = "Correct!";
             // Correct condition 
         } else {
             // I decideded make the penalty 7 points.
             timeLeft = timeLeft - 7;
-            createDivElement.textContent = "Wrong! The correct answer is:  " + questions[questionCounter].answer;
+            createDivElement.textContent = "Wrong!";
         }
 
     }
