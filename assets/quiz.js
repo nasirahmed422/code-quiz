@@ -129,16 +129,16 @@ function scoreSubmission() {
 
     // This will create the element to add the score to display on the main questionsDiv.
     var yourScoreElement = document.createElement("p");
-    yourScoreElement.setAttribute("id", "createP");
+    yourScoreElement.setAttribute("id", "yourScoreElement");
     questionsDiv.appendChild(yourScoreElement);
 
     if (timeLeft >= 0) {
         var timeRemaining = timeLeft;
-        var createP2 = document.createElement("p");
+        var pElement = document.createElement("p");
         //Window clearInterval() Method to stop the time.
         clearInterval(timeDisplay);
         yourScoreElement.textContent = "Your final score is: " + timeRemaining;
-        questionsDiv.appendChild(createP2);
+        questionsDiv.appendChild(pElement);
     }
 
     // This will ask you to enter your initials
