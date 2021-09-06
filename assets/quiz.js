@@ -31,7 +31,6 @@ var score = 0;
 //questionCounter will help pick a question from var questions up above.
 var questionCounter = 0;
 
-
 // These variables here will help identify some elements on the page from our index.html file which we will be manipulating.
 var timerDiv = document.querySelector("#timerDiv");
 var startQuiz = document.querySelector("#startQuiz");
