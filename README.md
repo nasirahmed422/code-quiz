@@ -21,4 +21,4 @@ https://nasirahmed422.github.io/code-quiz/
 ## Contribution
 Made with ❤️ by Nasir Ahmed
 
-### ©️2021 Nasir Ahmed's Random Password Generator
+### ©️2021 Nasir Ahmed's Code Quiz
